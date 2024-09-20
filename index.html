@@ -3,114 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>YouTube Video Speed Calculator</title>
-    
-    <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9931123120552605"
-     crossorigin="anonymous"></script>
-
-    <!-- Style Section -->
+        crossorigin="anonymous"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
             background-color: #f4f4f4;
-        }
-
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
+            margin: 0;
             padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-
-        label {
-            display: block;
-            margin: 10px 0 5px;
-        }
-
-        input, button {
-            padding: 10px;
-            margin: 5px 0;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .result {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #f0f0f0;
+        #ad-container {
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
+    <h1>YouTube Video Speed Calculator</h1>
+    <form id="speed-calculator">
+        <label for="url">Enter YouTube Video URL:</label>
+        <input type="text" id="url" required>
+        <button type="submit">Calculate Speed</button>
+    </form>
 
-    <div class="container">
-        <h1>YouTube Video Speed Calculator</h1>
+    <div id="result"></div>
 
-        <!-- Video Input Section -->
-        <form id="videoForm">
-            <label for="videoURL">Enter YouTube Video URL:</label>
-            <input type="url" id="videoURL" placeholder="https://www.youtube.com/watch?v=example" required>
-            
-            <label for="speed">Enter Video Speed (e.g., 1.5):</label>
-            <input type="number" step="0.1" id="speed" placeholder="Enter Speed" required>
-            
-            <button type="submit">Calculate Actual Duration</button>
-        </form>
-
-        <!-- Result Section -->
-        <div class="result" id="result"></div>
-
-        <!-- Google AdSense Ad Unit -->
+    <div id="ad-container">
+        <!-- Google AdSense ad unit -->
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-9931123120552605"
-             data-ad-slot="1234567890"
-             data-ad-format="auto"></ins>
+             data-ad-slot="2136518913"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
         <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
+             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
 
-    <!-- JavaScript Section -->
     <script>
-        document.getElementById('videoForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const videoURL = document.getElementById('videoURL').value;
-            const speed = parseFloat(document.getElementById('speed').value);
-            const resultDiv = document.getElementById('result');
-
-            // Extract video ID from YouTube URL
-            const videoIdMatch = videoURL.match(/(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/);
-
-            if (videoIdMatch) {
-                const videoId = videoIdMatch[1];
-
-                // Call YouTube API (You'll need to include your YouTube API logic here)
-                // Fetching the video duration, then calculating the actual duration based on speed.
-
-                // Assuming we get the duration (in seconds) from the YouTube API, for example:
-                let videoDuration = 3600; // Dummy value of 1 hour (3600 seconds)
-
-                const actualDuration = videoDuration / speed;
-                const hours = Math.floor(actualDuration / 3600);
-                const minutes = Math.floor((actualDuration % 3600) / 60);
-                const seconds = Math.floor(actualDuration % 60);
-
-                resultDiv.innerHTML = `Actual Video Duration at speed ${speed}x is: ${hours} hours, ${minutes} minutes, ${seconds} seconds.`;
-            } else {
-                resultDiv.innerHTML = 'Invalid YouTube URL';
-            }
+        document.getElementById('speed-calculator').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const url = document.getElementById('url').value;
+            // Your logic to calculate the speed goes here
+            document.getElementById('result').innerText = 'Calculated speed for: ' + url;
         });
     </script>
 </body>
